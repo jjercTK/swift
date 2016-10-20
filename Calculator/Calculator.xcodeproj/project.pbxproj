@@ -157,7 +157,7 @@
 				TargetAttributes = {
 					81AA7F0E1DA9F01E00229CDF = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = QNX8Q828U2;
+						DevelopmentTeam = KL955RL3SL;
 						ProvisioningStyle = Automatic;
 					};
 					81AA7F221DA9F01E00229CDF = {
@@ -352,7 +352,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QNX8Q828U2;
+				DEVELOPMENT_TEAM = KL955RL3SL;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tektonlabs.Calculator;
@@ -365,7 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QNX8Q828U2;
+				DEVELOPMENT_TEAM = KL955RL3SL;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tektonlabs.Calculator;
