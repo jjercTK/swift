@@ -8,9 +8,9 @@
 
 import UIKit
 
+var calculatorCount = 0
+
 class ViewController: UIViewController {
-    
-    // MARK: Properties
     
     @IBOutlet private weak var display: UILabel!
     private var userIsInTheMiddleOfTypying = false
@@ -25,7 +25,20 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: Actions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        calculatorCount += 1
+        print("Load up a new Calculator (count = \(calculatorCount))")
+        brain.addUnaryOperation(symbol: "Z") { [unowned me = self] in
+            me.display.textColor = UIColor.red
+            return sqrt($0)
+        }
+    }
+    
+    deinit { // this method gets called just before an object leaves the heap
+        calculatorCount -= 1
+        print("Calculator left the heap (count = \(calculatorCount))")
+    }
 
     @IBAction private func touchDigit(_ sender: UIButton) {
         if userIsInTheMiddleOfTypying {
