@@ -24,21 +24,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Earth"/>
                                         <connections>
-                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="vyF-WF-SLy"/>
+                                            <action selector="showImage:" destination="4Xl-tc-AI0" eventType="touchUpInside" id="0tu-EZ-0w9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxc-AS-C5I">
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Cassini"/>
                                         <connections>
-                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="nXa-wf-B39"/>
+                                            <action selector="showImage:" destination="4Xl-tc-AI0" eventType="touchUpInside" id="yPs-jf-BRz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEo-Vr-fc5">
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Saturn"/>
                                         <connections>
-                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="9x8-CM-wpV"/>
+                                            <action selector="showImage:" destination="4Xl-tc-AI0" eventType="touchUpInside" id="eGw-jW-ttN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -51,6 +51,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JrU-P9-LlJ"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="Show image" id="avK-c9-BiD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noF-pi-4Ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-23" y="949"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--navigation1-->
         <scene sceneID="Ngc-c8-pPD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Av9-v0-w4z" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Av9-v0-w4z" userLabel="navigation1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8dO-9o-52E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -124,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="-962.39999999999998" y="124.58770614692655"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--navigation2-->
         <scene sceneID="CBe-cp-1zh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXa-rl-7V8" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXa-rl-7V8" userLabel="navigation2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j2G-Ru-FqK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -144,6 +147,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Eof-1X-UC8"/>
+        <segue reference="avK-c9-BiD"/>
     </inferredMetricsTieBreakers>
 </document>

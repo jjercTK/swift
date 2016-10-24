@@ -10,7 +10,7 @@ import UIKit
 
 var cassinis = 0
 
-class CassiniViewController: UIViewController {
+class CassiniViewController: UIViewController, UISplitViewControllerDelegate {
     
     private struct Storyboard {
         static let ShowImageSegue = "Show image"
@@ -26,9 +26,39 @@ class CassiniViewController: UIViewController {
         }
     }
     
+    @IBAction func showImage(_ sender: UIButton) {
+        if let ivc = splitViewController?.viewControllers.last?.content as? ImageViewController {
+            let imageName = sender.currentTitle
+            ivc.imageURL = DemoURL.NASAImageNamed(imageName: imageName)
+            ivc.title = imageName
+        } else {
+            performSegue(withIdentifier: Storyboard.ShowImageSegue, sender: sender)
+        }
+    }
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        splitViewController?.delegate = self
+        //        splitViewController?.addObserver(self, forKeyPath: "viewControllers", options: [], context: nil)
         cassinis += 1
         //print("start \(cassinis)")
+    }
+    
+    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    //        if let spv = object as? UISplitViewController {
+    //            for vc in spv.viewControllers {
+    //                print(vc)
+    //            }
+    //        }
+    //    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if primaryViewController.content == self {
+            if let ivc = secondaryViewController as? ImageViewController, ivc.imageURL == nil {
+                return false
+            }
+        }
+        return true
     }
     
     deinit {

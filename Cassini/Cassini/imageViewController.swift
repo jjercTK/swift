@@ -85,13 +85,13 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         lifeCount += 1
-        //print("start \(lifeCount)")
+        print("start \(lifeCount)")
         scrollView.addSubview(imageView)
     }
     
     deinit {
         lifeCount -= 1
-        //print("end \(lifeCount)")
+        print("end \(lifeCount)")
     }
     
 }
