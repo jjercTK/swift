@@ -17,6 +17,8 @@ class ImageViewController: UIViewController {
         }
     }
     
+    private var imageView = UIImageView()
+    
     private var image: UIImage? {
         get {
             return imageView.image
@@ -24,7 +26,7 @@ class ImageViewController: UIViewController {
         set {
             imageView.image = newValue
             imageView.sizeToFit()
-            scrollView.contentSize = imageView.frame.size
+            scrollView?.contentSize = imageView.frame.size
         }
     }
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -41,12 +43,9 @@ class ImageViewController: UIViewController {
         }
     }
     
-    private var imageView = UIImageView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.addSubview(imageView)
-        imageURL = URL(string: DemoURL.NASA["Earth"]!)
     }
 
 
