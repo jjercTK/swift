@@ -24,21 +24,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Earth"/>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Show image" id="vyF-WF-SLy"/>
+                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="vyF-WF-SLy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxc-AS-C5I">
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Cassini"/>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Show image" id="nXa-wf-B39"/>
+                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="nXa-wf-B39"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEo-Vr-fc5">
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Saturn"/>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Show image" id="9x8-CM-wpV"/>
+                                            <segue destination="TXa-rl-7V8" kind="showDetail" identifier="Show image" id="9x8-CM-wpV"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -62,7 +62,7 @@
                 <splitViewController id="6KX-FV-9xd" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Av9-v0-w4z" kind="relationship" relationship="masterViewController" id="GtK-5X-WoQ"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="detailViewController" id="Eof-1X-UC8"/>
+                        <segue destination="TXa-rl-7V8" kind="relationship" relationship="detailViewController" id="Eof-1X-UC8"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qs-TI-vAW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -91,13 +91,14 @@
                             <constraint firstItem="mym-4A-YkH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Tdg-CN-xcv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="QgG-za-NIH"/>
                     <connections>
                         <outlet property="scrollView" destination="mym-4A-YkH" id="qPk-gk-nw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23" y="965"/>
+            <point key="canvasLocation" x="-23" y="949"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ngc-c8-pPD">
@@ -117,8 +118,26 @@
             </objects>
             <point key="canvasLocation" x="-962.39999999999998" y="124.58770614692655"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CBe-cp-1zh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXa-rl-7V8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j2G-Ru-FqK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fMz-58-0kg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLY-bN-WYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-962" y="949"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Eof-1X-UC8"/>
+        <segue reference="vyF-WF-SLy"/>
     </inferredMetricsTieBreakers>
 </document>
