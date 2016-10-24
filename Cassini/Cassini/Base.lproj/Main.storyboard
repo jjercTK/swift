@@ -82,18 +82,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mym-4A-YkH"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OUW-ng-wDz">
+                                <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mym-4A-YkH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2hL-Jz-ATr"/>
                             <constraint firstItem="mym-4A-YkH" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="N6F-yD-sac"/>
+                            <constraint firstItem="OUW-ng-wDz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NV5-fT-33f"/>
                             <constraint firstAttribute="trailing" secondItem="mym-4A-YkH" secondAttribute="trailing" id="Siz-6U-Sra"/>
                             <constraint firstItem="mym-4A-YkH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Tdg-CN-xcv"/>
+                            <constraint firstItem="OUW-ng-wDz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="szi-8w-60S"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QgG-za-NIH"/>
                     <connections>
                         <outlet property="scrollView" destination="mym-4A-YkH" id="qPk-gk-nw5"/>
+                        <outlet property="spinner" destination="OUW-ng-wDz" id="bUK-li-ADi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -138,6 +144,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vyF-WF-SLy"/>
+        <segue reference="Eof-1X-UC8"/>
     </inferredMetricsTieBreakers>
 </document>

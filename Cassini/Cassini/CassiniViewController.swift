@@ -8,6 +8,8 @@
 
 import UIKit
 
+var cassinis = 0
+
 class CassiniViewController: UIViewController {
     
     private struct Storyboard {
@@ -22,6 +24,16 @@ class CassiniViewController: UIViewController {
                 ivc.title = imageName
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        cassinis += 1
+        //print("start \(cassinis)")
+    }
+    
+    deinit {
+        cassinis -= 1
+        //print("end \(cassinis)")
     }
 }
 

@@ -8,12 +8,17 @@
 
 import UIKit
 
+var threadCount = 0
+var lifeCount = 0
+
 class ImageViewController: UIViewController, UIScrollViewDelegate {
     
     var imageURL: URL? {
         didSet {
             image = nil
-            fetchImage()
+            if view.window != nil { //this means you are on screen
+                fetchImage()
+            }
         }
     }
     
@@ -27,6 +32,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
             imageView.image = newValue
             imageView.sizeToFit()
             scrollView?.contentSize = imageView.frame.size
+            spinner?.stopAnimating()
         }
     }
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -37,6 +43,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
             scrollView.maximumZoomScale = 1.0
         }
     }
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
@@ -44,16 +51,47 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
     
     private func fetchImage() {
         if let url = imageURL {
-            if let imageData = NSData(contentsOf: url) {
-                image = UIImage(data: imageData as Data)
+            spinner?.startAnimating()
+            DispatchQueue.global(qos: .userInitiated).async {
+                let contentsOfURL = NSData(contentsOf: url)
+                threadCount += 1
+                //print("load \(threadCount)")
+                DispatchQueue.main.async {
+                    //print("main \(threadCount)")
+                    if url == self.imageURL {
+                        if let imageData = contentsOfURL {
+                            self.image = UIImage(data: imageData as Data)
+                        } else {
+                            print("weird")
+                            self.spinner?.stopAnimating()
+                        }
+                    } else {
+                        //print("ignored data \(threadCount)")
+                    }
+                }
             }
+            
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if image == nil {
+            fetchImage()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lifeCount += 1
+        //print("start \(lifeCount)")
         scrollView.addSubview(imageView)
     }
-
-
+    
+    deinit {
+        lifeCount -= 1
+        //print("end \(lifeCount)")
+    }
+    
 }
