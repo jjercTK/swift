@@ -1,5 +1,6 @@
 # Ignore other tutorials
 /petstktume
+*.zip
 
 # Created by https://www.gitignore.io/api/xcode,macos,osx,swift,objective-c
 
