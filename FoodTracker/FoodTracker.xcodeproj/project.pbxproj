@@ -125,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				81211C511DA443F10017B70F /* Main.storyboard */,
-				81CF4C971DCA2AFD00089130 /* MealTableViewController.swift */,
 				81C218041DC7E3FE00631D5E /* MealTableViewCell.swift */,
 				81398A701DA53D1700CEA085 /* RatingControl.swift */,
 			);
@@ -135,6 +134,7 @@
 		81C218031DC7D40F00631D5E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				81CF4C971DCA2AFD00089130 /* MealTableViewController.swift */,
 				81211C4F1DA443F10017B70F /* MealViewController.swift */,
 			);
 			name = Controller;

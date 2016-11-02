@@ -11,9 +11,13 @@ import UIKit
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    var meal: Meal?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +45,19 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Actions
+    // MARK: Navigation
     
+    override func  prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let button = sender as? UIBarButtonItem, button == saveButton {
+            let name = nameTextField.text ?? ""
+            let photo = photoImageView.image
+            let rating = ratingControl.rating
+            meal = Meal(name: name, photo: photo, rating: rating)
+        }
+    }
+    
+    // MARK: Actions
+
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         nameTextField.resignFirstResponder()
         let imagePickerController = UIImagePickerController()
