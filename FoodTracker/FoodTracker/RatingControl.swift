@@ -10,16 +10,29 @@ import UIKit
 
 @IBDesignable
 class RatingControl: UIView {
+    
     // MARK: Properties
-    var rating = 0 {
+    
+    @IBInspectable var rating: Int = 0 {
         didSet {
             //setNeedsLayout()
             updateButtonSelectionStates()
         }
     }
     var ratingButtons = [UIButton]()
-    let spacing = 5
-    let starCount = 5
+    @IBInspectable var spacing: Int = 5 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    @IBInspectable var starCount: Int = 5 {
+        didSet {
+            addRatingButtons()
+            updateButtonSelectionStates()
+            setNeedsLayout()
+            //setNeedsDisplay()
+        }
+    }
     //let buttonSize = 44 <- this was added to the view as a constraint
     
     @IBInspectable var emptyImage: UIImage! = UIImage(named: "emptyStar") {
@@ -32,37 +45,24 @@ class RatingControl: UIView {
     
     @IBInspectable var filledImage: UIImage! = UIImage(named: "filledStar") {
         didSet {
-            for button in ratingButtons {
-                button.setImage(filledImage, for: .selected)
-                button.setImage(filledImage, for: [.selected, .highlighted])
-            }
+            addImages()
         }
     }
+
+    
+    // MARK: Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        addRatingButtons()
     }
     
-    func setup(){
-        for _ in 0..<starCount {
-            let button = UIButton()
-            //button.backgroundColor = UIColor.red
-            button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped), for: .touchDown)
-            //button.setImage(emptyImage, for: .normal)
-            //button.setImage(filledImage, for: .selected)
-            //button.setImage(filledImage, for: [.selected, .highlighted])
-            button.adjustsImageWhenHighlighted = false
-            ratingButtons += [button]
-            addSubview(button)
-        }
-    }
-    
-    // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        addRatingButtons()
     }
+    
+    // MARK: Override Methods
     
     override var intrinsicContentSize : CGSize {
         let buttonSize = Int(frame.size.height)
@@ -82,14 +82,44 @@ class RatingControl: UIView {
     }
     
     // MARK: Button Action
+    
     func ratingButtonTapped(button: UIButton) {
         rating = ratingButtons.index(of: button)! + 1
     }
+    
+    // MARK: Methods
     
     func updateButtonSelectionStates() {
         for (index,button) in ratingButtons.enumerated() {
             button.isSelected = index < rating
         }
+    }
+    
+    func addImages(){
+        for button in ratingButtons {
+            button.setImage(emptyImage, for: .normal)
+            button.setImage(filledImage, for: .selected)
+            button.setImage(filledImage, for: [.selected, .highlighted])
+        }
+    }
+    
+    func addRatingButtons(){
+        for button in ratingButtons {
+            button.removeFromSuperview()
+        }
+        ratingButtons.removeAll()
+        for _ in 0..<starCount {
+            let button = UIButton()
+            //button.backgroundColor = UIColor.red
+            button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped), for: .touchDown)
+            //button.setImage(emptyImage, for: .normal)
+            //button.setImage(filledImage, for: .selected)
+            //button.setImage(filledImage, for: [.selected, .highlighted])
+            button.adjustsImageWhenHighlighted = false
+            ratingButtons += [button]
+            addSubview(button)
+        }
+        addImages()
     }
 
 }
