@@ -21,7 +21,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         nameTextField.delegate = self
+        checkValidMealName()
     }
     
     // MARK: UITextFieldDelegate
@@ -30,8 +32,13 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        checkValidMealName()
+        navigationItem.title = textField.text
     }
     
     // MARK: UIImagePickerControllerDelegate
@@ -64,6 +71,13 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: Methods
+    
+    func checkValidMealName(){
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
 }
 
