@@ -2,6 +2,7 @@
 App Development with Swift.xcworkspace
 /petstktume
 *.zip
+MyPlayground.playground/
 
 # Created by https://www.gitignore.io/api/xcode,macos,osx,swift,objective-c
 
