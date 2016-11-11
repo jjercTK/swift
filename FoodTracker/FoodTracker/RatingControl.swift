@@ -30,7 +30,7 @@ class RatingControl: UIView {
             addRatingButtons()
             updateButtonSelectionStates()
             setNeedsLayout()
-            //setNeedsDisplay()
+            invalidateIntrinsicContentSize() //re-calculate intrinsicContentSize
         }
     }
     //let buttonSize = 44 <- this was added to the view as a constraint

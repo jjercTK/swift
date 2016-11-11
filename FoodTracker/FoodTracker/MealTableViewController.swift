@@ -55,16 +55,14 @@ class MealTableViewController: UITableViewController {
         cell.photoImageView.image = meal.photo
         cell.ratingControl.rating = meal.rating
         
+        cell.meal = meal
         
         return cell
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
