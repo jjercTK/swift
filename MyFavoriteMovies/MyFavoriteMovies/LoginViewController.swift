@@ -100,7 +100,11 @@ class LoginViewController: UIViewController {
         let task = appDelegate.sharedSession.dataTask(with: request) { (data, response, error) in
             
             /* 5. Parse the data */
+            
+            
             /* 6. Use the data! */
+            
+            
         }
 
         /* 7. Start the request */
