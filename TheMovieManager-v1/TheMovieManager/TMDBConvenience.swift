@@ -31,7 +31,7 @@ extension TMDBClient {
             if success {
                 
                 // success! we have the requestToken!
-                print(requestToken)
+                print(requestToken!)
                 self.requestToken = requestToken
                 
                 self.loginWithToken(requestToken, hostViewController: hostViewController) { (success, errorString) in
@@ -49,7 +49,6 @@ extension TMDBClient {
                                     if success {
                                         
                                         if let userID = userID {
-                                            
                                             // and the userID 😄!
                                             self.userID = userID
                                         }
@@ -74,16 +73,24 @@ extension TMDBClient {
     private func getRequestToken(_ completionHandlerForToken: @escaping (_ success: Bool, _ requestToken: String?, _ errorString: String?) -> Void) {
         
         /* 1. Specify parameters, the API method, and the HTTP body (if POST) */
+        let parameters = [String:AnyObject]()
+        
         /* 2. Make the request */
-        /* 3. Send the desired value(s) to completion handler */
-        
-        /*
-        
-        taskForGETMethod(method, parameters: parameters) { (results, error) in
-        
+        let _ = taskForGETMethod(Methods.AuthenticationTokenNew, parameters: parameters) { (results, error) in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForToken(false, nil, "Login Failed (Request Token)")
+            } else {
+                if let requestToken = results?[TMDBClient.JSONResponseKeys.RequestToken] as? String {
+                    completionHandlerForToken(true, requestToken, nil)
+                } else {
+                    print("Could not find \(TMDBClient.JSONResponseKeys.RequestToken) in \(results)")
+                    completionHandlerForToken(false, nil, "Login Failed (Request Token)")
+                }
+            }
         }
-        
-        */
     }
     
     private func loginWithToken(_ requestToken: String?, hostViewController: UIViewController, completionHandlerForLogin: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
