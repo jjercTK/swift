@@ -99,11 +99,61 @@ class LoginViewController: UIViewController {
         /* 4. Make the request */
         let task = appDelegate.sharedSession.dataTask(with: request) { (data, response, error) in
             
+            // if an error occurs, print it and re-enable the UI
+            func displayError(_ error: String) {
+                print(error)
+                performUIUpdatesOnMain {
+                    self.setUIEnabled(true)
+                    self.debugTextLabel.text = "No token returned. Try Again"
+                }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
             /* 5. Parse the data */
             
+            let parsedResult: [String:AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            /* GUARD: Did TMDB return an error (success != true)? */
+            guard let success = parsedResult[Constants.TMDBResponseKeys.Success] as? Bool, success else {
+                displayError("TMDB API returned an error. See error code and message in \(parsedResult)")
+                return
+            }
+    
+            
+            /* GUARD: Do we have request token? */
+            guard let request_token = parsedResult[Constants.TMDBParameterKeys.RequestToken] as? String else {
+                displayError("Empty request token")
+                return
+            }
             
             /* 6. Use the data! */
             
+            print("REQUEST TOKEN: \(request_token)")
+            self.appDelegate.requestToken = request_token
+            self.loginWithToken(self.appDelegate.requestToken!)
             
         }
 
