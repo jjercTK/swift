@@ -53,18 +53,19 @@ class TMDBAuthViewController: UIViewController {
 extension TMDBAuthViewController: UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        switch webView.request!.url!.path {
-        case "/authenticate/\(requestToken!)/allow":
-            dismiss(animated: true) {
-                self.completionHandlerForView!(true, "Successful login!")
+        
+        // if user has to login, this will redirect them back to the authorization url
+        if webView.request!.url!.absoluteString.contains(TMDBClient.Constants.AccountURL) {
+            if let urlRequest = urlRequest {
+                webView.loadRequest(urlRequest)
             }
-        case "/authenticate/\(requestToken!)/deny":
+        }
+        
+        if webView.request!.url!.absoluteString == "\(TMDBClient.Constants.AuthorizationURL)\(requestToken!)/allow" {
+            
             dismiss(animated: true) {
-                self.completionHandlerForView!(false, "Please allow next time.")
+                self.completionHandlerForView!(true, nil)
             }
-        default:
-            break
         }
     }
-    
 }
